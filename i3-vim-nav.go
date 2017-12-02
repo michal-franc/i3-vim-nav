@@ -23,7 +23,7 @@ func main() {
 	window := xdot.GetActiveWindow()
 	name := strings.ToLower(window.GetName())
 
-	r, _ := regexp.Compile(`\bn?v(im)?$`)
+	r, _ := regexp.Compile(`^\bn?(vim)`)
 
 	if r.MatchString(name) {
 		keycmd := exec.Command("xdotool", "key", "--clearmodifiers", "Escape+control+"+dir)
