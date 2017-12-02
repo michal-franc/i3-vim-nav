@@ -1,6 +1,16 @@
 # i3-vim-nav
 Seamlessly change focus between i3 windows and Vim splits using the same hotkey.
 
+## Important
+Vim and i3 cannot share same key-bind. If that is the case i3 will always take the precendence and won't get vim to sent key command. In order to make i3-vim-nav work you need to have <c-x> used in vim.
+
+The way i3-vim-nav works
+- based on window name it sends command either to i3 or xdotool
+- if window name starts with vim xdotool will be used
+- xdotool command assumes that vim is mapped on <c-x> key
+- xdotool translates your i3 keybind to vim keybing
+- that way even when you have separate keybinds on vim and i3, you can use i3 keybind within vim context
+
 # Installation
 
 ## Dependencies
