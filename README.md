@@ -17,6 +17,8 @@ The way i3-vim-nav works
 
 This depends on you having a couple packages installed. Most notably, `xdotool/libxdo`, the second of which should be installed as a dependency of the first. If you want to build the binary from source and you're on Fedora, you'll also need the `libxdo-devel` package. We also currently require you to be using a version of vim with either python or python3 support.
 
+If Installing xdotool doesnt fix the xdo.h problem - sudo apt-get install libxdo-dev 
+
 ## Vim plugin
 
 First, install the Vim plugin.
