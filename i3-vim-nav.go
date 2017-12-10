@@ -11,6 +11,12 @@ import (
 	"github.com/proxypoke/i3ipc"
 )
 
+var R = regexp.MustCompile(`^\bn?(vim)`)
+
+func isItInVimContext(name string) bool {
+  return R.MatchString(name)
+}
+
 func main() {
 	dir := string(os.Args[1])
 
@@ -23,9 +29,7 @@ func main() {
 	window := xdot.GetActiveWindow()
 	name := strings.ToLower(window.GetName())
 
-	r, _ := regexp.Compile(`^\bn?(vim)`)
-
-	if r.MatchString(name) {
+	if isItInVimContext(name) {
 		keycmd := exec.Command("xdotool", "key", "--clearmodifiers", "Escape+control+"+dir)
 		out, _ := keycmd.Output()
 		if len(out) > 0 {
