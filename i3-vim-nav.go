@@ -11,7 +11,7 @@ import (
 	"github.com/proxypoke/i3ipc"
 )
 
-var R = regexp.MustCompile(`^\bn?(vim)`)
+var R = regexp.MustCompile(`^.*\s?(vim|VIM)\s?$`)
 
 func isItInVimContext(name string) bool {
   return R.MatchString(name)

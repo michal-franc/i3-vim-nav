@@ -8,6 +8,10 @@ func TestVimRegexp(t *testing.T) {
     "vim": true,
     "i3-vim-nav.go (~/tools/i3-vim-nav) - vim": true,
     "i3-vim-nav.go": false,
+    "VIM": true,
+    " vim": true,
+    "vim ": true,
+    " vim ": true,
   }
 
   for key, val := range testCases {
