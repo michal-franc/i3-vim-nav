@@ -5,15 +5,16 @@ import (
 	"os"
 	"os/exec"
 	"regexp"
+	"strings"
 
+	xdo "github.com/aep/xdo-go"
 	"github.com/proxypoke/i3ipc"
 )
 
-func isItInVimContext() bool {
-  if _, ok := os.LookupEnv("VIM") ; ok {
-    return true
-  }
-  return false
+var R = regexp.MustCompile(`^\bn?(vim)`)
+
+func isItInVimContext(name string) bool {
+  return R.MatchString(name)
 }
 
 func main() {
@@ -24,7 +25,11 @@ func main() {
 		return
 	}
 
-	if isItInVimContext() {
+	xdot := xdo.NewXdo()
+	window := xdot.GetActiveWindow()
+	name := strings.ToLower(window.GetName())
+
+	if isItInVimContext(name) {
 		keycmd := exec.Command("xdotool", "key", "--clearmodifiers", "Escape+control+"+dir)
 		out, _ := keycmd.Output()
 		if len(out) > 0 {
